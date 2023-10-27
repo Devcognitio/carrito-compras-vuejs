@@ -1,41 +1,32 @@
 <template>
     <v-card class="mx-auto my-8" elevation="2" max-width="380">
-
-
         <v-carousel height="180" hide-delimiters show-arrows="hover">
             <v-carousel-item v-for="(image, imageIndex) in images" :key="imageIndex" :src="image.url" cover>
             </v-carousel-item>
         </v-carousel>
-
         <v-card-item>
             <v-card-title :title="make"></v-card-title>
             <v-card-subtitle>
                 <span class="me-1">{{ name }}</span>
             </v-card-subtitle>
         </v-card-item>
-
         <v-card-text>
             <v-row align="center" class="mx-0">
-                <v-rating :model-value="stars" color="#f4511e" density="compact" half-increments readonly
-                    size="small"></v-rating>
-
+                <v-rating :model-value="stars" color="#f4511e" density="compact" half-increments readonly size="small">
+                </v-rating>
                 <div class="text-grey ms-4">
                     {{ stars }} stars
                 </div>
             </v-row>
-
             <div class="my-4 text-subtitle-1">
                 $ {{ formattedPrice(price) }} • {{ country }}
             </div>
-
             <div>
                 Year {{ year }} • max speed {{ max_speed }} km/h • Horse power {{ hp }} cv. •
                 is a{{ hybrid ? 'n' : '' }} hybrid car • available color {{ color }}
             </div>
         </v-card-text>
-
         <v-divider class="mx-4 mb-1"></v-divider>
-
         <v-card-actions>
             <v-btn prepend-icon="mdi-plus" variant="elevated" @click="addToCart" block size="small" color="black">
                 ADD TO CART
@@ -82,7 +73,7 @@ export default {
             required: true
         },
         price: {
-            type: Number,
+            type: String,
             required: true
         },
         country: {
@@ -121,8 +112,8 @@ export default {
             this.$emit('add-to-cart', item);
         },
 
-        formattedPrice(numero: number): string {
-            const numeroConPuntos = numero.toLocaleString('es-ES');
+        formattedPrice(numero: string): string {
+            const numeroConPuntos = numero.toLocaleString();
             return numeroConPuntos.replace(/,/g, '.');
         }
     }

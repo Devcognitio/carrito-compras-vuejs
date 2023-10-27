@@ -11,7 +11,7 @@ export type Car = {
   color: string;
   hp: number;
   hybrid: string;
-  price: number;
+  price: string;
   stars: number;
   country: string;
   url_image: CarImage[];

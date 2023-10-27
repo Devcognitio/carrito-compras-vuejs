@@ -2,5 +2,5 @@
     logo?: string;
     name?: string;
     make?: string;
-    price?: Number;
+    price: string;
 };

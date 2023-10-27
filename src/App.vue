@@ -3,8 +3,6 @@
     <NavBarComponent :cartItemsCount="cartItemsCount" :cartItems="cartItems" @remove-item="removeCartItem" />
     <SearchCarComponent @cart-item-count-updated="updateCartItemsCount" @item-added-to-cart="updateCartItems"/>
   </v-app>
-
-
 </template>
   
 <script lang="ts">
@@ -30,8 +28,9 @@ export default {
       this.$emit('cart-item-Counter', count)
     },
 
-    updateCartItems(items: Item) {
-      this.cartItems = items;
+    updateCartItems(item: Item) {
+      this.cartItems = item;
+      this.$emit('cart-item-updated', this.cartItems);
     },
 
     removeCartItem(index: number) {
